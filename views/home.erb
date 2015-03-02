@@ -25,24 +25,16 @@
 
 
 <form action="/home" method="POST">
-    <% if (score["Human"] - score["A.I."]).abs == 2 %>
-      <% if score["Human"] > score["A.I."] %>
-        <% winner = "Human" %>
-      <% else %>
-        <% winner = "A.I." %>
-      <% end %>
+    <% if (score["Human"] - score["A.I."]).abs == 2 || score.invert[3] %>
+      <% score["Human"] > score["A.I."] ? winner = "Human" : winner = "A.I." %>
       <h3><%= "#{winner} wins!" %></h3>
       <button class="button tiny" name="restart" value="true">Play again</button> 
-    <% elsif score.invert[3] %> 
-      <h3><%= "#{score.invert[3]} wins!" %></h3>
-      <button class="button tiny" name="restart" value="true">Play again</button> 
     <% else %>
-    <h3>Choose!</h3>
-    <div id="bottom_row">
-      <button class="button tiny" name="Human" value="rock">Rock</button> 
-      <button class="button tiny" name="Human" value="paper">Paper</button> 
-      <button class="button tiny" name="Human" value="scissors">Scissors</button> 
-    </div>
+      <h3>Choose!</h3>
+      <div id="bottom_row">
+        <button class="button tiny" name="Human" value="rock">Rock</button> 
+        <button class="button tiny" name="Human" value="paper">Paper</button> 
+        <button class="button tiny" name="Human" value="scissors">Scissors</button> 
+      </div>
     <% end %>
 </form>
-  
